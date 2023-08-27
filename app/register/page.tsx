@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 
 export default function Register() {
   const [isRegistering, setIsRegistering] = useState<boolean>(false);
@@ -75,6 +76,11 @@ export default function Register() {
               ) : 'Register' }
             </Button>
             { registrationFeedback && <Alert severity={registrationError ? 'error' : 'success'}>{ registrationFeedback }</Alert> }
+            <Typography variant="body1" align="center">
+              I already have an accout.
+              {' '}
+              <Typography color="primary.main"><Link href="/login">Login</Link></Typography>
+            </Typography>
           </Stack>
         </form>
       </Box>
