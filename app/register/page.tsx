@@ -2,12 +2,15 @@
 
 import { RegisterFormValues } from '@/models/interfaces/register-form-values';
 import {
-  Box, Button, Container, TextField, Stack, Typography,
+  Box, Button, Container, TextField, Stack, Typography, LinearProgress, Alert,
 } from '@mui/material';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function Register() {
+  const [isRegistering, setIsRegistering] = useState<boolean>(false);
+  const [registrationError, setRegistrationError] = useState<boolean>(false);
+  const [registrationFeedback, setRegistrationFeedback] = useState<string>('');
   const form = useForm<RegisterFormValues>({
     defaultValues: {
       email: '',
@@ -18,8 +21,22 @@ export default function Register() {
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
-  const onSubmit = useCallback((data: RegisterFormValues) => {
-    console.log(data);
+  const onSubmit = useCallback(async (data: RegisterFormValues) => {
+    setRegistrationFeedback('');
+    setIsRegistering(true);
+    const resp = await fetch('/api/users/register', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }).then((res) => res.json()).then((res) => {
+      if (res.error) {
+        setRegistrationError(true);
+        setRegistrationFeedback(res.error);
+      } else {
+        setRegistrationError(false);
+        setRegistrationFeedback('Account successfully created. Go to your email to validate it.');
+      }
+      setIsRegistering(false);
+    });
   }, []);
 
   return (
@@ -50,7 +67,14 @@ export default function Register() {
               error={!!errors.password}
               helperText={errors.password?.message}
             />
-            <Button type="submit" variant="contained">Register</Button>
+            <Button type="submit" variant="contained" disabled={isRegistering}>
+              { isRegistering ? (
+                <Box sx={{ width: '100%' }}>
+                  <LinearProgress />
+                </Box>
+              ) : 'Register' }
+            </Button>
+            { registrationFeedback && <Alert severity={registrationError ? 'error' : 'success'}>{ registrationFeedback }</Alert> }
           </Stack>
         </form>
       </Box>
