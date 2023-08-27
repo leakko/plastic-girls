@@ -9,5 +9,6 @@
   },
   "rules": {
     "linebreak-style": ["error", "windows"]
-  }
+  },
+  "include": ["./.eslintrc.js"]
 }
