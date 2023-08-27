@@ -1,13 +1,20 @@
 'use client';
 
-import { LoginFormValues } from '@/models/interfaces/login-form-values';
+import { LoginFormValues } from '@/models/interfaces/register-form-values';
 import {
-  Box, Button, Container, TextField, Stack, Typography,
+  Box, Button, Container, TextField, Stack, Typography, LinearProgress, Alert,
 } from '@mui/material';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Link from 'next/link';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
-export default function Login() {
+export default function Register() {
+  const [isLogging, setIsLogging] = useState<boolean>(false);
+  const [loginError, setLoginError] = useState<boolean>(false);
+  const [loginFeedback, setLoginFeedback] = useState<string>('');
+  const router = useRouter();
   const form = useForm<LoginFormValues>({
     defaultValues: {
       email: '',
@@ -18,9 +25,23 @@ export default function Login() {
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
-  const onSubmit = useCallback((data: LoginFormValues) => {
-    console.log(data);
-  }, []);
+  const onSubmit = useCallback(async ({ email, password }: LoginFormValues) => {
+    setLoginFeedback('');
+    setIsLogging(true);
+    const resp = await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (resp?.error) {
+      setIsLogging(false);
+      setLoginError(true);
+      setLoginFeedback(resp.error);
+    } else {
+      router.push('/');
+    }
+  }, [router]);
 
   return (
     <Container maxWidth="sm">
@@ -50,7 +71,19 @@ export default function Login() {
               error={!!errors.password}
               helperText={errors.password?.message}
             />
-            <Button type="submit" variant="contained">Login</Button>
+            <Button type="submit" variant="contained" disabled={isLogging}>
+              { isLogging ? (
+                <Box sx={{ width: '100%' }}>
+                  <LinearProgress />
+                </Box>
+              ) : 'Login' }
+            </Button>
+            { loginFeedback && <Alert severity={loginError ? 'error' : 'success'}>{ loginFeedback }</Alert> }
+            <Typography variant="body1" align="center">
+              I don&lsquo;t have an accout.
+              {' '}
+              <Link href="/register" style={{ color: 'steelblue' }}>Register</Link>
+            </Typography>
           </Stack>
         </form>
       </Box>

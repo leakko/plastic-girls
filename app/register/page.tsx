@@ -79,7 +79,7 @@ export default function Register() {
             <Typography variant="body1" align="center">
               I already have an accout.
               {' '}
-              <Typography color="primary.main"><Link href="/login">Login</Link></Typography>
+              <Link href="/login" style={{ color: 'steelblue' }}>Login</Link>
             </Typography>
           </Stack>
         </form>

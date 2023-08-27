@@ -15,6 +15,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
     "import/no-mutable-exports": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "no-param-reassign": "off"
   }
 }
