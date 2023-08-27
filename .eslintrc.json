@@ -8,7 +8,12 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "linebreak-style": ["error", "windows"]
-  },
-  "include": ["./.eslintrc.js"]
+    "linebreak-style": ["error", "windows"],
+    "no-useless-catch": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "import/no-mutable-exports": "off"
+  }
 }
