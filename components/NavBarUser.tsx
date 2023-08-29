@@ -29,11 +29,4 @@ export default function NavBarUser(
       </Link>
     );
   }
-  return (
-    <Tooltip title="Open settings">
-      <IconButton disabled onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-        <Avatar alt="anonymous@gmail.com" src="img/user-icon-white.png" />
-      </IconButton>
-    </Tooltip>
-  );
 }
