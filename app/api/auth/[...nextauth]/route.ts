@@ -20,7 +20,7 @@ export const authOptions: NextAuthOptions = {
         await dbConnect();
 
         const user = await UserModel.findOne({ email });
-        if (!user) throw Error('Email or password is not correct');
+        if (!user) throw Error('We cannot find an account with that email, please register');
 
         const passwordMatch = await user.comparePassword(password);
         if (!passwordMatch) throw Error('Email or password is not correct');
