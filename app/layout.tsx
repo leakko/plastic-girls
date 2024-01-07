@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import ThemeRegistry from '@/theme/ThemeRegistry';
 import NavBar from '@/components/NavBar';
 import AuthProvider from '@/providers/AuthProvider';
+import { Box, Container } from '@mui/material';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,7 +25,11 @@ export default function RootLayout({
         <ThemeRegistry>
           <AuthProvider>
             <NavBar />
-            {children}
+            <Container maxWidth="sm">
+              <Box m={3}>
+                {children}
+              </Box>
+            </Container>
           </AuthProvider>
         </ThemeRegistry>
       </body>

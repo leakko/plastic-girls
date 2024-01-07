@@ -2,7 +2,7 @@
 
 import { RegisterFormValues } from '@/models/interfaces/register-form-values';
 import {
-  Box, Button, Container, TextField, Stack, Typography, LinearProgress, Alert,
+  Box, Button, TextField, Stack, Typography, LinearProgress, Alert,
 } from '@mui/material';
 import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -41,49 +41,47 @@ export default function Register() {
   }, []);
 
   return (
-    <Container maxWidth="sm">
-      <Box m={3}>
-        <Typography variant="h2" align="center">Register</Typography>
-        <form action="/api/ok" onSubmit={handleSubmit(onSubmit)} noValidate>
-          <Stack spacing={2}>
-            <TextField
-              id="email"
-              label="Email"
-              variant="standard"
-              type="email"
-              {...register('email', {
-                required: 'Email is required',
-              })}
-              error={!!errors.email}
-              helperText={errors.email?.message}
-            />
-            <TextField
-              id="password"
-              label="Password"
-              variant="standard"
-              type="password"
-              {...register('password', {
-                required: 'Password is required',
-              })}
-              error={!!errors.password}
-              helperText={errors.password?.message}
-            />
-            <Button type="submit" variant="contained" disabled={isRegistering}>
-              { isRegistering ? (
-                <Box sx={{ width: '100%' }}>
-                  <LinearProgress />
-                </Box>
-              ) : 'Register' }
-            </Button>
-            { registrationFeedback && <Alert severity={registrationError ? 'error' : 'success'}>{ registrationFeedback }</Alert> }
-            <Typography variant="body1" align="center">
-              I already have an accout.
-              {' '}
-              <Link href="/login" style={{ color: 'steelblue' }}>Login</Link>
-            </Typography>
-          </Stack>
-        </form>
-      </Box>
-    </Container>
+    <>
+      <Typography variant="h2" align="center">Register</Typography>
+      <form action="/api/ok" onSubmit={handleSubmit(onSubmit)} noValidate>
+        <Stack spacing={2}>
+          <TextField
+            id="email"
+            label="Email"
+            variant="standard"
+            type="email"
+            {...register('email', {
+              required: 'Email is required',
+            })}
+            error={!!errors.email}
+            helperText={errors.email?.message}
+          />
+          <TextField
+            id="password"
+            label="Password"
+            variant="standard"
+            type="password"
+            {...register('password', {
+              required: 'Password is required',
+            })}
+            error={!!errors.password}
+            helperText={errors.password?.message}
+          />
+          <Button type="submit" variant="contained" disabled={isRegistering}>
+            { isRegistering ? (
+              <Box sx={{ width: '100%' }}>
+                <LinearProgress />
+              </Box>
+            ) : 'Register' }
+          </Button>
+          { registrationFeedback && <Alert severity={registrationError ? 'error' : 'success'}>{ registrationFeedback }</Alert> }
+          <Typography variant="body1" align="center">
+            I already have an accout.
+            {' '}
+            <Link href="/login" style={{ color: 'steelblue' }}>Login</Link>
+          </Typography>
+        </Stack>
+      </form>
+    </>
   );
 }
