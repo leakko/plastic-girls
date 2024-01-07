@@ -25,7 +25,7 @@ export default function RootLayout({
         <ThemeRegistry>
           <AuthProvider>
             <NavBar />
-            <Container maxWidth="sm">
+            <Container maxWidth="lg">
               <Box m={3}>
                 {children}
               </Box>

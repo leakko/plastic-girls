@@ -2,7 +2,7 @@
 
 import { RegisterFormValues } from '@/models/interfaces/register-form-values';
 import {
-  Box, Button, TextField, Stack, Typography, LinearProgress, Alert,
+  Box, Button, TextField, Stack, Typography, LinearProgress, Alert, Container,
 } from '@mui/material';
 import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -41,7 +41,7 @@ export default function Register() {
   }, []);
 
   return (
-    <>
+    <Container  maxWidth="sm">
       <Typography variant="h2" align="center">Register</Typography>
       <form action="/api/ok" onSubmit={handleSubmit(onSubmit)} noValidate>
         <Stack spacing={2}>
@@ -82,6 +82,6 @@ export default function Register() {
           </Typography>
         </Stack>
       </form>
-    </>
+    </Container>
   );
 }
