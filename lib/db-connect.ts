@@ -7,7 +7,6 @@ export default async function () {
 
   try {
     client = await mongoose.connect(mongoUri);
-    console.log('DB Connected');
   } catch (error) {
     console.log('Error conntecting database: ', error);
   }
