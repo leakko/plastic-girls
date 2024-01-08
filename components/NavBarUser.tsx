@@ -22,11 +22,10 @@ export default function NavBarUser(
         </IconButton>
       </Tooltip>
     );
-  } if (status === 'unauthenticated') {
-    return (
-      <Link href="/login">
-        <Button variant="contained" color="primary">Login</Button>
-      </Link>
-    );
   }
+  return (
+    <Link href="/login">
+      <Button variant="contained" color="primary" disabled={status !== 'unauthenticated'}>Login</Button>
+    </Link>
+  );
 }
