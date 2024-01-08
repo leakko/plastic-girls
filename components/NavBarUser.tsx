@@ -18,7 +18,7 @@ export default function NavBarUser(
     return (
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt={userData.email} src="img/user-icon-white.png" />
+          <Avatar alt={userData.email} src="img/user-icon-black.webp" />
         </IconButton>
       </Tooltip>
     );
