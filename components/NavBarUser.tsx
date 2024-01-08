@@ -25,7 +25,7 @@ export default function NavBarUser(
   } if (status === 'unauthenticated') {
     return (
       <Link href="/login">
-        <Button variant="contained" color="tertiary">Login</Button>
+        <Button variant="contained" color="primary">Login</Button>
       </Link>
     );
   }
