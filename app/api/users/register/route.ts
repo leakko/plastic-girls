@@ -35,14 +35,14 @@ export const POST = async (req: Request): Promise<NewResponse> => {
   const info = await transporter.sendMail({
     from: `"Plastic Girls 🔥" <${process.env.MAILER_USER}>`,
     to: body.email,
-    subject: "Verify your account",
+    subject: 'Verify your account',
     html: `
       <p>To verify your Plastic Girls account, click <a href="${process.env.NEXTAUTH_URL}/verification/${verificationToken}">here</a></p>
       <p>Or directly paste this url in your broswer: <em>${process.env.NEXTAUTH_URL}/verification/${verificationToken}</em></p>
     `,
   });
 
-  console.log("Message sent: %s", info.messageId);
+  console.log('Message sent: %s', info.messageId);
 
   return NextResponse.json({
     data: {

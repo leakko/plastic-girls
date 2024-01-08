@@ -41,7 +41,7 @@ export default function Register() {
   }, []);
 
   return (
-    <Container  maxWidth="sm">
+    <Container maxWidth="sm">
       <Typography variant="h2" align="center">Register</Typography>
       <form action="/api/ok" onSubmit={handleSubmit(onSubmit)} noValidate>
         <Stack spacing={2}>
