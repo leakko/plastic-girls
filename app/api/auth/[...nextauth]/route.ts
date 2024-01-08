@@ -3,7 +3,7 @@ import UserModel from '@/models/db/UserModel';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
