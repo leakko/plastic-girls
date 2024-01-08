@@ -42,8 +42,6 @@ export const POST = async (req: Request): Promise<NewResponse> => {
     `,
   });
 
-  console.log('Message sent: %s', info.messageId);
-
   return NextResponse.json({
     data: {
       user: {
