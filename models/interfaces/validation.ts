@@ -1,3 +1,3 @@
 export interface Validation {
-    token: string;
+  token: string;
 }
