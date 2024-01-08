@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import GirlsCloud from '@/components/girls-cloud';
 
 export default function Home() {
